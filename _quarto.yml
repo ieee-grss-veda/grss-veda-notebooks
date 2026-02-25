@@ -1,19 +1,16 @@
 project:
   type: website
 
-  resources:
-    - "CNAME"
-
 website:
   page-navigation: true
-  title: "VEDA Documentation"
+  title: "GRSS VEDA Documentation"
   # site-url: "https://docs.openveda.cloud"
   repo-url: https://github.com/ieee-grss-veda/grss-veda-notebooks
   repo-actions: [edit, issue]
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; CC-By NASA, 2022-2024"
+    left: "&copy; CC-By IEEE GRSS, 2026"
 
   sidebar:
     logo: "https://deploy-preview-2--grss-veda.netlify.app/images/GRSS-lightmode-logo.png"
