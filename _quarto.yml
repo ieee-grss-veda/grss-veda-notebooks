@@ -7,8 +7,8 @@ project:
 website:
   page-navigation: true
   title: "VEDA Documentation"
-  site-url: "https://docs.openveda.cloud"
-  repo-url: https://github.com/nasa-impact/veda-docs
+  # site-url: "https://docs.openveda.cloud"
+  repo-url: https://github.com/ieee-grss-veda/grss-veda-notebooks
   repo-actions: [edit, issue]
 
   page-footer:
@@ -16,7 +16,7 @@ website:
     left: "&copy; CC-By NASA, 2022-2024"
 
   sidebar:
-    logo: "https://visex.netlify.app/graphics/nasa-veda-logo-pos.svg"
+    logo: "https://deploy-preview-2--grss-veda.netlify.app/images/GRSS-lightmode-logo.png"
     pinned: true
     align: center
     tools:
@@ -24,7 +24,7 @@ website:
         href: https://www.earthdata.nasa.gov/esds/veda
         text: "earthdata.nasa.gov/esds/veda"
       - icon: github
-        href: https://github.com/nasa-impact/veda-docs
+        href: https://github.com/ieee-grss-veda/grss-veda-notebooks
         text: "Repository home"
     style: "docked"
     search: true
@@ -33,119 +33,91 @@ website:
       - href: index.qmd
         text: Welcome
       - text: "---"
-      - section: veda-project/index.qmd
+      - section: User Guide
         contents:
-          - veda-project/why.qmd
-          - section: veda-project/target-use-cases/index.qmd
-            contents:
-            - veda-project/target-use-cases/dashboard.qmd
-            - veda-project/target-use-cases/data-services.qmd
-            - veda-project/target-use-cases/scientific-computing.qmd
-      - text: "---"
-      - section: user-guide/index.qmd
-        contents:
-          - section: user-guide/content-curation/index.qmd
-            contents:
-              - section: user-guide/content-curation/dataset-ingestion/index.qmd
-                contents:
-                  - user-guide/content-curation/dataset-ingestion/file-preparation.qmd
-                  - user-guide/content-curation/dataset-ingestion/catalog-ingestion.qmd
-                  - user-guide/content-curation/dataset-ingestion/veda-ingest-ui.qmd
-                  - user-guide/notebooks/veda-operations/generate-cmip6-virtual-zarr-historical.ipynb
-                  - section: STAC Collection Creation
-                    contents:
-                      - user-guide/content-curation/dataset-ingestion/stac-collection-conventions.qmd
-                      - user-guide/notebooks/veda-operations/stac-collection-creation.ipynb
-                      - user-guide/notebooks/veda-operations/publish-cmip6-virtual-zarr-stac.ipynb
-                  - section: STAC Item Creation
-                    contents:
-                      - user-guide/content-curation/dataset-ingestion/stac-item-conventions.qmd
-                      - user-guide/notebooks/veda-operations/stac-item-creation.ipynb
-                  - section: Boilerplate ingest example
-                    contents:
-                      - user-guide/content-curation/dataset-ingestion/example-template/example-geoglam-ingest.ipynb
-              - section: user-guide/content-curation/external-collection-indexing/index.qmd
-                contents:
-                  - user-guide/content-curation/external-collection-indexing/titiler-cmr.qmd
-                  - section: user-guide/content-curation/external-collection-indexing/arcgis-server-integration.qmd
-                    contents:
-                      - user-guide/content-curation/external-collection-indexing/imageserver-integration.qmd
-                      - user-guide/content-curation/external-collection-indexing/mapserver-integration.qmd
-                      - user-guide/content-curation/external-collection-indexing/featureserver-integration.qmd
-                  - user-guide/content-curation/external-collection-indexing/wmts.qmd
-                  - user-guide/content-curation/external-collection-indexing/examples/README.md
-              - section: user-guide/content-curation/dashboard-configuration/index.qmd
-                contents:
-                  - user-guide/content-curation/dashboard-configuration/dataset-configuration.qmd
-                  - user-guide/content-curation/dashboard-configuration/story-configuration.qmd
-              - section: user-guide/content-curation/docs-and-notebooks.qmd
-                contents:
-                  - user-guide/notebooks/templates/template-accessing-the-data-directly.ipynb
-                  - user-guide/notebooks/templates/template-using-the-raster-api.ipynb
-                  - section: user-guide/data-services/index.qmd
-          - section: Data Access and Data Management
-            contents:
-              - user-guide/data-services/data-store.qmd
-              - user-guide/data-services/data-ingestion.qmd
-              - user-guide/data-services/setup-keycloak.qmd
-              - user-guide/data-services/rstudio-s3-access.qmd
-              - section: user-guide/data-services/apis/index.qmd
-                contents:
-                  - user-guide/data-services/apis/raster-api.qmd
-                  - user-guide/data-services/apis/stac-api.qmd
-          - section: user-guide/scientific-computing/index.qmd
-            contents:
-              - user-guide/scientific-computing/code-server.md
-              - user-guide/scientific-computing/ssh.md
-              - user-guide/scientific-computing/github-authentication.qmd
-              - user-guide/scientific-computing/custom-environments.qmd
-              - user-guide/scientific-computing/getting-access.qmd
-          - section: user-guide/notebooks/index.qmd
+          # - section: user-guide/content-curation/index.qmd
+          #   contents:
+          #     - section: user-guide/content-curation/dataset-ingestion/index.qmd
+          #       contents:
+          #         - user-guide/content-curation/dataset-ingestion/file-preparation.qmd
+          #         - user-guide/content-curation/dataset-ingestion/catalog-ingestion.qmd
+          #         - user-guide/content-curation/dataset-ingestion/veda-ingest-ui.qmd
+          #         - user-guide/notebooks/veda-operations/generate-cmip6-virtual-zarr-historical.ipynb
+          #         - section: STAC Collection Creation
+          #           contents:
+          #             - user-guide/content-curation/dataset-ingestion/stac-collection-conventions.qmd
+          #             - user-guide/notebooks/veda-operations/stac-collection-creation.ipynb
+          #             - user-guide/notebooks/veda-operations/publish-cmip6-virtual-zarr-stac.ipynb
+          #         - section: STAC Item Creation
+          #           contents:
+          #             - user-guide/content-curation/dataset-ingestion/stac-item-conventions.qmd
+          #             - user-guide/notebooks/veda-operations/stac-item-creation.ipynb
+          #         - section: Boilerplate ingest example
+          #           contents:
+          #             - user-guide/content-curation/dataset-ingestion/example-template/example-geoglam-ingest.ipynb
+          #     - section: user-guide/content-curation/external-collection-indexing/index.qmd
+          #       contents:
+          #         - user-guide/content-curation/external-collection-indexing/titiler-cmr.qmd
+          #         - section: user-guide/content-curation/external-collection-indexing/arcgis-server-integration.qmd
+          #           contents:
+          #             - user-guide/content-curation/external-collection-indexing/imageserver-integration.qmd
+          #             - user-guide/content-curation/external-collection-indexing/mapserver-integration.qmd
+          #             - user-guide/content-curation/external-collection-indexing/featureserver-integration.qmd
+          #         - user-guide/content-curation/external-collection-indexing/wmts.qmd
+          #         - user-guide/content-curation/external-collection-indexing/examples/README.md
+          #     - section: user-guide/content-curation/dashboard-configuration/index.qmd
+          #       contents:
+          #         - user-guide/content-curation/dashboard-configuration/dataset-configuration.qmd
+          #         - user-guide/content-curation/dashboard-configuration/story-configuration.qmd
+          #     - section: user-guide/content-curation/docs-and-notebooks.qmd
+          #       contents:
+          #         - user-guide/notebooks/templates/template-accessing-the-data-directly.ipynb
+          #         - user-guide/notebooks/templates/template-using-the-raster-api.ipynb
+          #         - section: user-guide/data-services/index.qmd
+          # - section: Data Access and Data Management
+          #   contents:
+          #     - user-guide/data-services/data-store.qmd
+          #     - user-guide/data-services/data-ingestion.qmd
+          #     - user-guide/data-services/setup-keycloak.qmd
+          #     - user-guide/data-services/rstudio-s3-access.qmd
+          #     - section: user-guide/data-services/apis/index.qmd
+          #       contents:
+          #         - user-guide/data-services/apis/raster-api.qmd
+          #         - user-guide/data-services/apis/stac-api.qmd
+          # - section: user-guide/scientific-computing/index.qmd
+          #   contents:
+          #     - user-guide/scientific-computing/code-server.md
+          #     - user-guide/scientific-computing/ssh.md
+          #     - user-guide/scientific-computing/github-authentication.qmd
+          #     - user-guide/scientific-computing/custom-environments.qmd
+          #     - user-guide/scientific-computing/getting-access.qmd
+          - section: Notebooks
             contents:
               - section: Quickstarts
                 contents:
                   - section: Accessing the Data Directly
                     contents:
                       - user-guide/notebooks/quickstarts/list-collections.ipynb
-                      - user-guide/notebooks/quickstarts/open-and-plot.ipynb
-                      - user-guide/notebooks/quickstarts/timeseries-rioxarray-stackstac.ipynb
-                      - user-guide/notebooks/quickstarts/visualize-zarr.ipynb
-                      - user-guide/notebooks/quickstarts/visualize-multiple-times.ipynb
-                      - user-guide/notebooks/quickstarts/downsample-zarr.ipynb
                       - user-guide/notebooks/quickstarts/download-assets.ipynb
                   - section: Using the Raster API
                     contents:
                       - user-guide/notebooks/quickstarts/no2-map-plot.ipynb
                       - user-guide/notebooks/quickstarts/timeseries-stac-api.ipynb
-                      - user-guide/notebooks/quickstarts/hls-visualization.ipynb
-              - section: Tutorials
-                contents:
-                  - user-guide/notebooks/tutorials/gif-generation.ipynb
-                  - user-guide/notebooks/tutorials/netcdf-to-cog-cmip6.ipynb
-                  - user-guide/notebooks/tutorials/mapping-fires.ipynb
-                  - user-guide/notebooks/tutorials/stac_ipyleaflet.ipynb
-                  - user-guide/notebooks/tutorials/zonal-statistics-validation.ipynb
+                      # - user-guide/notebooks/quickstarts/hls-visualization.ipynb
+              # - section: Tutorials
+              #   contents:
+              #     - user-guide/notebooks/tutorials/gif-generation.ipynb
+              #     - user-guide/notebooks/tutorials/netcdf-to-cog-cmip6.ipynb
+              #     - user-guide/notebooks/tutorials/mapping-fires.ipynb
+              #     - user-guide/notebooks/tutorials/stac_ipyleaflet.ipynb
+              #     - user-guide/notebooks/tutorials/zonal-statistics-validation.ipynb
               - section: Datasets
                 contents:
-                  - user-guide/notebooks/datasets/ocean-npp-timeseries-analysis.ipynb
-                  - user-guide/notebooks/datasets/nceo-biomass-statistics.ipynb
-                  - user-guide/notebooks/datasets/volcano-so2-monitoring.ipynb
-                  - user-guide/notebooks/datasets/air-quality-covid.ipynb
-                  - user-guide/notebooks/datasets/nldas_time_series.ipynb
-                  - user-guide/notebooks/datasets/nldas_compare2_3.ipynb
-              - section: Stories
-                contents:
-                  - user-guide/notebooks/stories/derechos.ipynb
-                  - user-guide/notebooks/stories/tornadoes_2024_notebook.ipynb
-      - text: "---"
-      - section: open-source-ecosystem/index.qmd
-        contents:
-          - open-source-ecosystem/architecture.qmd
-          - open-source-ecosystem/repositories.qmd
-          - open-source-ecosystem/external-resources.qmd
-          - section: open-source-ecosystem/creating-your-own-instance/index.qmd
-            contents:
-              - open-source-ecosystem/creating-your-own-instance/creating-your-own-veda-dashboard.qmd
+                  - user-guide/notebooks/datasets/lpjeosim-wetlandch4-monthgrid-v1_User_Notebook.ipynb
+              # - section: Stories
+              #   contents:
+              #     - user-guide/notebooks/stories/derechos.ipynb
+              #     - user-guide/notebooks/stories/tornadoes_2024_notebook.ipynb
 format:
   html:
     theme:
