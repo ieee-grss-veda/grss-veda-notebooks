@@ -23,7 +23,7 @@ These docs help you use the services provided by the NASA VEDA Platform and lear
 - [Getting Started with VEDA](user-guide/notebooks/quickstarts/list-collections.ipynb)
 - [Download Assets](user-guide/notebooks/quickstarts/download-assets.ipynb)
 - [Map plot](user-guide/notebooks/quickstarts/no2-map-plot.ipynb)
-- [Map plot](user-guide/notebooks/quickstarts/timeseries-stac-api.ipynb)
+- [Timeseries analysis](user-guide/notebooks/quickstarts/timeseries-stac-api.ipynb)
 
 
 ## New to VEDA?
