@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-02-24">
-<meta name="description" content="Programmatically explore all datasets available in the GRSS VEDA STAC catalog">
+<meta name="description" content="Generate an interactive map displaying digital elevation model data">
 
-<title>Browse Available Collections – GRSS VEDA Documentation</title>
+<title>Visualizing Elevation Data – GRSS VEDA Documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,13 +60,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../user-guide/notebooks/quickstarts/download-assets.html" rel="next">
+<link href="../../../user-guide/notebooks/quickstarts/timeseries-stac-api.html" rel="next">
+<link href="../../../user-guide/notebooks/quickstarts/download-assets.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -109,6 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script defer="" data-domain="nasa-impact.github.io/veda-docs" src="https://plausible.io/js/script.js"></script>
 
 
@@ -286,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">User Guide</li><li class="breadcrumb-item">Notebooks</li><li class="breadcrumb-item">Quickstarts</li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/list-collections.html">Accessing the Data Directly</a></li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/list-collections.html">Browse Available Collections</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">User Guide</li><li class="breadcrumb-item">Notebooks</li><li class="breadcrumb-item">Quickstarts</li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/map-plot.html">Using the Raster API</a></li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/map-plot.html">Visualizing Elevation Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -353,16 +357,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Accessing the Data Directly</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user-guide/notebooks/quickstarts/list-collections.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../user-guide/notebooks/quickstarts/list-collections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Browse Available Collections</span></a>
   </div>
 </li>
@@ -376,16 +380,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Using the Raster API</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user-guide/notebooks/quickstarts/map-plot.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../user-guide/notebooks/quickstarts/map-plot.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Visualizing Elevation Data</span></a>
   </div>
 </li>
@@ -431,24 +435,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#workflow" id="toc-workflow" class="nav-link active" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#connect-to-the-stac-catalog" id="toc-connect-to-the-stac-catalog" class="nav-link" data-scroll-target="#connect-to-the-stac-catalog">Connect to the STAC Catalog</a></li>
-  <li><a href="#display-all-collections" id="toc-display-all-collections" class="nav-link" data-scroll-target="#display-all-collections">Display All Collections</a></li>
-  <li><a href="#other-ways-to-discover-data" id="toc-other-ways-to-discover-data" class="nav-link" data-scroll-target="#other-ways-to-discover-data">Other Ways to Discover Data</a></li>
+  <li><a href="#configure-api-endpoints" id="toc-configure-api-endpoints" class="nav-link" data-scroll-target="#configure-api-endpoints">Configure API Endpoints</a></li>
+  <li><a href="#retrieve-collection-metadata" id="toc-retrieve-collection-metadata" class="nav-link" data-scroll-target="#retrieve-collection-metadata">Retrieve Collection Metadata</a></li>
+  <li><a href="#query-for-a-specific-item" id="toc-query-for-a-specific-item" class="nav-link" data-scroll-target="#query-for-a-specific-item">Query for a Specific Item</a></li>
+  <li><a href="#determine-visualization-parameters" id="toc-determine-visualization-parameters" class="nav-link" data-scroll-target="#determine-visualization-parameters">Determine Visualization Parameters</a></li>
+  <li><a href="#generate-map-tiles" id="toc-generate-map-tiles" class="nav-link" data-scroll-target="#generate-map-tiles">Generate Map Tiles</a></li>
+  <li><a href="#display-the-elevation-map" id="toc-display-the-elevation-map" class="nav-link" data-scroll-target="#display-the-elevation-map">Display the Elevation Map</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.dev/ieee-grss-veda/grss-veda-notebooks/blob/main/user-guide/notebooks/quickstarts/list-collections.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ieee-grss-veda/grss-veda-notebooks/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.dev/ieee-grss-veda/grss-veda-notebooks/blob/main/user-guide/notebooks/quickstarts/map-plot.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ieee-grss-veda/grss-veda-notebooks/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">User Guide</li><li class="breadcrumb-item">Notebooks</li><li class="breadcrumb-item">Quickstarts</li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/list-collections.html">Accessing the Data Directly</a></li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/list-collections.html">Browse Available Collections</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">User Guide</li><li class="breadcrumb-item">Notebooks</li><li class="breadcrumb-item">Quickstarts</li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/map-plot.html">Using the Raster API</a></li><li class="breadcrumb-item"><a href="../../../user-guide/notebooks/quickstarts/map-plot.html">Visualizing Elevation Data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Browse Available Collections</h1>
+<h1 class="title">Visualizing Elevation Data</h1>
 </div>
 
 <div>
   <div class="description">
-    Programmatically explore all datasets available in the GRSS VEDA STAC catalog
+    Generate an interactive map displaying digital elevation model data
   </div>
 </div>
 
@@ -474,44 +481,472 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="workflow" class="level2">
 <h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
 <ol type="1">
-<li>Connect to the GRSS VEDA STAC catalog using <code>pystac_client</code></li>
-<li>Enumerate all available collections and display their titles</li>
+<li>Query the STAC API to retrieve an item from the TDM30 EDEM collection</li>
+<li>Generate map tiles through the raster API endpoint</li>
+<li>Render the tiles on an interactive map with <code>folium</code></li>
 </ol>
-</section>
-<section id="connect-to-the-stac-catalog" class="level2">
-<h2 class="anchored" data-anchor-id="connect-to-the-stac-catalog">Connect to the STAC Catalog</h2>
-<div id="cell-4" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>STAC_API_URL <span class="op">=</span> <span class="st">"https://api.dev.veda.grss.cloud/stac"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>catalog <span class="op">=</span> Client.<span class="bu">open</span>(STAC_API_URL)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="display-all-collections" class="level2">
-<h2 class="anchored" data-anchor-id="display-all-collections">Display All Collections</h2>
-<div id="cell-6" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>collections <span class="op">=</span> <span class="bu">list</span>(catalog.get_collections())</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(collections)<span class="sc">}</span><span class="ss"> collections:</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> collection <span class="kw">in</span> <span class="bu">sorted</span>(collections, key<span class="op">=</span><span class="kw">lambda</span> x: x.title <span class="kw">or</span> x.<span class="bu">id</span>):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>collection<span class="sc">.</span>title <span class="kw">or</span> collection<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Found 4 collections:
-
-- (Monthly) Wetland Methane Emissions, LPJ-EOSIM Model v2
-- HLS_S30_Nadir_BRDF_Adjusted_Reflectance
-- SEDAC Gridded World Population Density v4.11
-- TanDEM-X - Edited Digital Elevation Model (EDEM) - Global, 30m</code></pre>
-</div>
-</div>
-</section>
-<section id="other-ways-to-discover-data" class="level2">
-<h2 class="anchored" data-anchor-id="other-ways-to-discover-data">Other Ways to Discover Data</h2>
-<p>In addition to programmatic access, you can explore collections through:</p>
+<section id="configure-api-endpoints" class="level2">
+<h2 class="anchored" data-anchor-id="configure-api-endpoints">Configure API Endpoints</h2>
+<p>Discover available datasets through:</p>
 <ul>
+<li><strong>Programmatically</strong>: See the <code>list-collections.ipynb</code> notebook</li>
 <li><strong>JSON API</strong>: https://api.dev.veda.grss.cloud/stac/collections</li>
-<li><strong>Web Interface</strong>: https://api.dev.veda.grss.cloud</li>
 </ul>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>STAC_API_URL <span class="op">=</span> <span class="st">"https://api.dev.veda.grss.cloud/stac"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>RASTER_API_URL <span class="op">=</span> <span class="st">"https://api.dev.veda.grss.cloud/raster"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>collection_id <span class="op">=</span> <span class="st">"TDM30_EDEM"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="retrieve-collection-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="retrieve-collection-metadata">Retrieve Collection Metadata</h2>
+<p>Fetch the collection details to understand the available data and its properties.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="ss">f"</span><span class="sc">{</span>STAC_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_id<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> response.ok, response.text</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> response.json()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>collection</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>{'id': 'TDM30_EDEM',
+ 'type': 'Collection',
+ 'links': [{'rel': 'items',
+   'type': 'application/geo+json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM/items'},
+  {'rel': 'parent',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/'},
+  {'rel': 'root',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/'},
+  {'rel': 'self',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM'},
+  {'rel': 'items',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM/items',
+   'type': 'application/geo+json'},
+  {'rel': 'http://www.opengis.net/def/rel/ogc/1.0/queryables',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM/queryables',
+   'type': 'application/schema+json',
+   'title': 'Queryables'},
+  {'rel': 'license',
+   'href': 'https://geoservice.dlr.de/resources/licenses/tdm30-edited/License_for_the_Utilization_of_TanDEM-X_30m-EDEM_DCM_for_Scientific_Use.pdf',
+   'type': 'application/pdf',
+   'title': 'License for the Utilization of TanDEM-X 30m DEM for Scientific Use'},
+  {'rel': 'cite-as',
+   'href': 'https://doi.org/10.3390/rs12233961',
+   'title': 'A Fully Automatic Algorithm for Editing the TanDEM-X Global DEM'},
+  {'rel': 'about',
+   'href': 'https://geoservice.dlr.de/web/dataguide/tdm30/',
+   'type': 'text/html',
+   'title': 'TanDEM-X 30m EDEM Data Guide'},
+  {'rel': 'http://www.opengis.net/def/rel/ogc/1.0/queryables',
+   'type': 'application/schema+json',
+   'title': 'Queryables',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM/queryables'}],
+ 'title': 'TanDEM-X - Edited Digital Elevation Model (EDEM) - Global, 30m',
+ 'assets': {},
+ 'extent': {'spatial': {'bbox': [[-11.000208333333333,
+     34.999861111111116,
+     19.00013888888889,
+     63.00013888888889]]},
+  'temporal': {'interval': [['2010-01-01 00:00:00+00',
+     '2014-12-31 23:59:59+00']]}},
+ 'license': 'proprietary',
+ 'renders': {'dem': {'assets': ['dem'],
+   'rescale': [[-500, 8000]],
+   'colormap_name': 'terrain'},
+  'dashboard': {'assets': ['dem'],
+   'rescale': [[-500, 8000]],
+   'colormap_name': 'terrain'}},
+ 'sci:doi': '10.3390/rs12233961',
+ 'keywords': ['TanDEM-X',
+  'DEM',
+  'EDEM',
+  'Digital Elevation Model',
+  'Digital Surface Model',
+  'DSM',
+  'Topography',
+  'SAR Interferometry',
+  'InSAR',
+  'Elevation',
+  'Global',
+  '30m',
+  'X-band',
+  'Radar'],
+ 'providers': [{'url': 'https://www.dlr.de',
+   'name': 'German Aerospace Center (DLR)',
+   'roles': ['producer', 'processor', 'licensor'],
+   'description': 'The TanDEM-X mission is realized in a public-private partnership between DLR and Airbus Defence and Space.'},
+  {'url': 'https://www.airbus.com',
+   'name': 'Airbus Defence and Space',
+   'roles': ['producer'],
+   'description': 'Commercial partner for the TanDEM-X mission'},
+  {'url': 'https://geoservice.dlr.de',
+   'name': 'EOC Geoservice',
+   'roles': ['host'],
+   'description': 'DLR Earth Observation Center Geoservice for data distribution'}],
+ 'summaries': {'datetime': ['2010-01-01T00:00:00Z']},
+ 'description': "The TanDEM-X 30m Edited Digital Elevation Model (EDEM) is a global Digital Elevation Model (DEM) with 1 arcsecond (~30m) pixel spacing, acquired by the German TanDEM-X mission between 2010 and 2014. It covers approximately 150 million square kilometers of all Earth's landmasses from pole to pole. The EDEM is an edited version of the TanDEM-X Global DEM, processed with a fully automatic algorithm to fill data gaps and remove artifacts using auxiliary elevation data from AW3D30, NASADEM, LiDAR, REMA DEM, and Arctic DEM. The product represents a Digital Surface Model (DSM) showing radar-reflective surfaces. The data has an absolute vertical accuracy of approximately 1 meter and horizontal accuracy (CE90) below 10 meters. The vertical datum is WGS84-G1150 ellipsoid (EPSG:4979) and EGM2008 geoid (EPSG:3855). This dataset serves as a reference for topographical analysis and change detection applications.",
+ 'item_assets': {'dem': {'type': 'image/tiff; application=geotiff; profile=cloud-optimized',
+   'roles': ['data', 'layer'],
+   'title': 'Digital Elevation Model',
+   'description': 'Cloud optimized GeoTIFF containing elevation data in meters'}},
+ 'sci:citation': 'C. González, M. Bachmann, J.L. Bueso-Bello, P. Rizzoli, M. Zink. A Fully Automatic Algorithm for Editing the TanDEM-X Global DEM. Remote Sensing. 2020; 12(23):3961.',
+ 'stac_version': '1.0.0',
+ 'stac_extensions': ['https://stac-extensions.github.io/render/v1.0.0/schema.json',
+  'https://stac-extensions.github.io/item-assets/v1.0.0/schema.json'],
+ 'dashboard:is_periodic': False,
+ 'dashboard:time_density': 'year'}</code></pre>
+</div>
+</div>
+</section>
+<section id="query-for-a-specific-item" class="level2">
+<h2 class="anchored" data-anchor-id="query-for-a-specific-item">Query for a Specific Item</h2>
+<p>Use the STAC search endpoint to find items within the collection. For digital elevation models, we typically query by spatial extent.</p>
+<div id="cell-8" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Query items from the collection</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>STAC_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_id<span class="sc">}</span><span class="ss">/items"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{<span class="st">"limit"</span>: <span class="dv">10</span>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> response.ok, response.text</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> response.json()[<span class="st">"features"</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(items)<span class="sc">}</span><span class="ss"> items"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found 10 items</code></pre>
+</div>
+</div>
+<p>Examine the structure of an item to understand the available assets:</p>
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> items[<span class="dv">0</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>{'id': 'TDM1_EDEM_10_N62W008_EDEM_W84_cog',
+ 'bbox': [-8.000277777777777,
+  61.999861111111116,
+  -5.999722222222221,
+  63.00013888888889],
+ 'type': 'Feature',
+ 'links': [{'rel': 'collection',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM'},
+  {'rel': 'parent',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM'},
+  {'rel': 'root',
+   'type': 'application/json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/'},
+  {'rel': 'self',
+   'type': 'application/geo+json',
+   'href': 'https://api.dev.veda.grss.cloud/stac/collections/TDM30_EDEM/items/TDM1_EDEM_10_N62W008_EDEM_W84_cog'},
+  {'title': 'Map of Item',
+   'href': 'https://api.dev.veda.grss.cloud/raster/collections/TDM30_EDEM/items/TDM1_EDEM_10_N62W008_EDEM_W84_cog/WebMercatorQuad/map?assets=dem&amp;rescale=-500%2C8000&amp;colormap_name=terrain',
+   'rel': 'preview',
+   'type': 'text/html'}],
+ 'assets': {'dem': {'href': 's3://ieee-grss-data-store/tandemx-30m-edem/cog/TDM1_EDEM_10_N62W008_EDEM_W84_cog.tif',
+   'type': 'image/tiff; application=geotiff',
+   'roles': ['data', 'layer'],
+   'title': 'Digital Elevation Model',
+   'proj:bbox': [-8.000277777777777,
+    61.999861111111116,
+    -5.999722222222221,
+    63.00013888888889],
+   'proj:epsg': 4326,
+   'proj:shape': [3601, 3601],
+   'description': 'Cloud optimized GeoTIFF containing elevation data in meters',
+   'raster:bands': [{'scale': 1.0,
+     'nodata': -32767.0,
+     'offset': 0.0,
+     'sampling': 'point',
+     'data_type': 'float32',
+     'histogram': {'max': 881.67578125,
+      'min': -224.88092041015625,
+      'count': 11,
+      'buckets': [10,
+       65,
+       962838,
+       20710,
+       21580,
+       20475,
+       14090,
+       6601,
+       1894,
+       313]},
+     'statistics': {'mean': 81.1307144165039,
+      'stddev': 89.53138942668164,
+      'maximum': 881.67578125,
+      'minimum': -224.88092041015625,
+      'valid_percent': 100.0}}],
+   'proj:geometry': {'type': 'Polygon',
+    'coordinates': [[[-8.000277777777777, 61.999861111111116],
+      [-5.999722222222221, 61.999861111111116],
+      [-5.999722222222221, 63.00013888888889],
+      [-8.000277777777777, 63.00013888888889],
+      [-8.000277777777777, 61.999861111111116]]]},
+   'proj:transform': [0.0005555555555555556,
+    0.0,
+    -8.000277777777777,
+    0.0,
+    -0.0002777777777777778,
+    63.00013888888889,
+    0.0,
+    0.0,
+    1.0]},
+  'rendered_preview': {'title': 'Rendered preview',
+   'href': 'https://api.dev.veda.grss.cloud/raster/collections/TDM30_EDEM/items/TDM1_EDEM_10_N62W008_EDEM_W84_cog/preview.png?assets=dem&amp;rescale=-500%2C8000&amp;colormap_name=terrain',
+   'rel': 'preview',
+   'roles': ['overview'],
+   'type': 'image/png'}},
+ 'geometry': {'type': 'Polygon',
+  'coordinates': [[[-8.000277777777777, 61.999861111111116],
+    [-5.999722222222221, 61.999861111111116],
+    [-5.999722222222221, 63.00013888888889],
+    [-8.000277777777777, 63.00013888888889],
+    [-8.000277777777777, 61.999861111111116]]]},
+ 'collection': 'TDM30_EDEM',
+ 'properties': {'end_datetime': '2014-12-31T23:59:59Z',
+  'start_datetime': '2010-01-01T00:00:00Z'},
+ 'stac_version': '1.0.0',
+ 'stac_extensions': ['https://stac-extensions.github.io/raster/v1.1.0/schema.json',
+  'https://stac-extensions.github.io/projection/v1.1.0/schema.json']}</code></pre>
+</div>
+</div>
+</section>
+<section id="determine-visualization-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="determine-visualization-parameters">Determine Visualization Parameters</h2>
+<p>Extract statistics from the item to set appropriate rescale values for rendering.</p>
+<div id="cell-12" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the primary asset key</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>asset_keys <span class="op">=</span> <span class="bu">list</span>(item[<span class="st">'assets'</span>].keys())</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Available assets: </span><span class="sc">{</span>asset_keys<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the data asset (exclude metadata assets like 'rendered_preview')</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data_asset <span class="op">=</span> [k <span class="cf">for</span> k <span class="kw">in</span> asset_keys <span class="cf">if</span> k <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'rendered_preview'</span>]][<span class="dv">0</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using asset: </span><span class="sc">{</span>data_asset<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Available assets: ['dem', 'rendered_preview']
+Using asset: dem</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set elevation rescale values (typical range for terrain)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rescale_values <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">3000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="generate-map-tiles" class="level2">
+<h2 class="anchored" data-anchor-id="generate-map-tiles">Generate Map Tiles</h2>
+<p>Request tile metadata from the raster API to visualize the elevation data.</p>
+<div id="cell-15" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tile_matrix_set_id <span class="op">=</span> <span class="st">"WebMercatorQuad"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>colormap_name <span class="op">=</span> <span class="st">"terrain"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>RASTER_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_id<span class="sc">}</span><span class="ss">/items/</span><span class="sc">{</span>item[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>tile_matrix_set_id<span class="sc">}</span><span class="ss">/tilejson.json"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"assets"</span>: data_asset,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"colormap_name"</span>: colormap_name,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"rescale"</span>: <span class="ss">f"</span><span class="sc">{</span>rescale_values[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>rescale_values[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> response.ok, response.text</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> response.json()</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>tiles</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>{'tilejson': '2.2.0',
+ 'version': '1.0.0',
+ 'scheme': 'xyz',
+ 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/TDM30_EDEM/items/TDM1_EDEM_10_N62W008_EDEM_W84_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=dem&amp;colormap_name=terrain&amp;rescale=0%2C3000'],
+ 'minzoom': 0,
+ 'maxzoom': 24,
+ 'bounds': [-8.000277777777777,
+  61.999861111111116,
+  -5.999722222222221,
+  63.00013888888889],
+ 'center': [-6.999999999999999, 62.5, 0]}</code></pre>
+</div>
+</div>
+</section>
+<section id="display-the-elevation-map" class="level2">
+<h2 class="anchored" data-anchor-id="display-the-elevation-map">Display the Elevation Map</h2>
+<p>Create an interactive map using <code>folium</code> to visualize the terrain data.</p>
+<div id="cell-17" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate center from item bounds</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> item[<span class="st">'bbox'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>center_lat <span class="op">=</span> (bbox[<span class="dv">1</span>] <span class="op">+</span> bbox[<span class="dv">3</span>]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>center_lon <span class="op">=</span> (bbox[<span class="dv">0</span>] <span class="op">+</span> bbox[<span class="dv">2</span>]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    location<span class="op">=</span>[center_lat, center_lon],</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    zoom_start<span class="op">=</span><span class="dv">8</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">"CartoDB positron"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>folium.TileLayer(</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span>tiles[<span class="st">"tiles"</span>][<span class="dv">0</span>],</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    attr<span class="op">=</span><span class="st">"GRSS VEDA"</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    overlay<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Elevation"</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>folium.LayerControl().add_to(m)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_2e92627e731a185864291ec3b40b0e1f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_2e92627e731a185864291ec3b40b0e1f&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2e92627e731a185864291ec3b40b0e1f = L.map(
+                &quot;map_2e92627e731a185864291ec3b40b0e1f&quot;,
+                {
+                    center: [62.5, -6.999999999999999],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 8,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c20ced3321982462d23af75cbb14c253 = L.tileLayer(
+                &quot;https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 20,
+  &quot;maxNativeZoom&quot;: 20,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\&quot;https://carto.com/attributions\&quot;\u003eCARTO\u003c/a\u003e&quot;,
+  &quot;subdomains&quot;: &quot;abcd&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_c20ced3321982462d23af75cbb14c253.addTo(map_2e92627e731a185864291ec3b40b0e1f);
+        
+    
+            var tile_layer_87e1e6ffde73985b8b6a77e94be75cdf = L.tileLayer(
+                &quot;https://api.dev.veda.grss.cloud/raster/collections/TDM30_EDEM/items/TDM1_EDEM_10_N62W008_EDEM_W84_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=dem\u0026colormap_name=terrain\u0026rescale=0%2C3000&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 18,
+  &quot;maxNativeZoom&quot;: 18,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;GRSS VEDA&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 0.7,
+}
+
+            );
+        
+    
+            tile_layer_87e1e6ffde73985b8b6a77e94be75cdf.addTo(map_2e92627e731a185864291ec3b40b0e1f);
+        
+    
+            var layer_control_a5b613a85724c6dd2fa4bec2c9566859_layers = {
+                base_layers : {
+                    &quot;cartodbpositron&quot; : tile_layer_c20ced3321982462d23af75cbb14c253,
+                },
+                overlays :  {
+                    &quot;Elevation&quot; : tile_layer_87e1e6ffde73985b8b6a77e94be75cdf,
+                },
+            };
+            let layer_control_a5b613a85724c6dd2fa4bec2c9566859 = L.control.layers(
+                layer_control_a5b613a85724c6dd2fa4bec2c9566859_layers.base_layers,
+                layer_control_a5b613a85724c6dd2fa4bec2c9566859_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_2e92627e731a185864291ec3b40b0e1f);
+
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
 
 
 </section>
@@ -932,10 +1367,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../user-guide/notebooks/quickstarts/download-assets.html" class="pagination-link" aria-label="Download STAC assets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Download STAC assets</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../user-guide/notebooks/quickstarts/download-assets.html" class="pagination-link" aria-label="Download STAC assets">
-        <span class="nav-page-text">Download STAC assets</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../user-guide/notebooks/quickstarts/timeseries-stac-api.html" class="pagination-link" aria-label="Population Density Time Series Analysis">
+        <span class="nav-page-text">Population Density Time Series Analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -947,7 +1385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/ieee-grss-veda/grss-veda-notebooks/blob/main/user-guide/notebooks/quickstarts/list-collections.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ieee-grss-veda/grss-veda-notebooks/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/ieee-grss-veda/grss-veda-notebooks/blob/main/user-guide/notebooks/quickstarts/map-plot.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ieee-grss-veda/grss-veda-notebooks/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

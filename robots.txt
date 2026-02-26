@@ -1,1 +1,1 @@
-Sitemap: https://docs.openveda.cloud/sitemap.xml
+Sitemap: https://ieee-grss-veda.github.io/grss-veda-notebooks/sitemap.xml
