@@ -98,7 +98,7 @@ website:
                       - user-guide/notebooks/quickstarts/download-assets.ipynb
                   - section: Using the Raster API
                     contents:
-                      - user-guide/notebooks/quickstarts/no2-map-plot.ipynb
+                      - user-guide/notebooks/quickstarts/map-plot.ipynb
                       - user-guide/notebooks/quickstarts/timeseries-stac-api.ipynb
                       # - user-guide/notebooks/quickstarts/hls-visualization.ipynb
               # - section: Tutorials
