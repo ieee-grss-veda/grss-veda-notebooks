@@ -443,6 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#time-series-visualization" id="toc-time-series-visualization" class="nav-link" data-scroll-target="#time-series-visualization">Time Series Visualization</a></li>
   <li><a href="#regional-snapshot" id="toc-regional-snapshot" class="nav-link" data-scroll-target="#regional-snapshot">Regional Snapshot</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.dev/ieee-grss-veda/grss-veda-notebooks/blob/main/user-guide/notebooks/datasets/lpjeosim-wetlandch4-monthgrid-v1_User_Notebook.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ieee-grss-veda/grss-veda-notebooks/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -503,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="connect-to-the-stac-api" class="level2">
 <h2 class="anchored" data-anchor-id="connect-to-the-stac-api">Connect to the STAC API</h2>
 <p>Import required libraries and configure the API endpoints to access the GRSS VEDA STAC catalog.</p>
-<div id="cell-6" class="cell" data-execution_count="1">
+<div id="cell-6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium.plugins</span>
@@ -513,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="8">
+<div id="cell-7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure API endpoints for the GRSS VEDA platform</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>STAC_API_URL <span class="op">=</span> <span class="st">"https://api.dev.veda.grss.cloud/stac"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>RASTER_API_URL <span class="op">=</span> <span class="st">"https://api.dev.veda.grss.cloud/raster"</span></span>
@@ -524,11 +525,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Asset containing the ensemble mean CH4 emissions data</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>asset_name <span class="op">=</span> <span class="st">"ensemble-mean-ch4-wetlands-emissions"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="10">
+<div id="cell-8" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve collection metadata</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> requests.get(<span class="ss">f"</span><span class="sc">{</span>STAC_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">"</span>).json()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>collection</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>{'id': 'LPJ_EOSIM_L2_MCH4E.001',
  'type': 'Collection',
  'links': [{'rel': 'items',
@@ -580,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The collection metadata shows temporal coverage from 1990 to present with daily observations, as indicated by <code>dashboard:time_density</code>.</p>
-<div id="cell-10" class="cell" data-execution_count="14">
+<div id="cell-10" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_collection_items(collection_id):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Count total items in a STAC collection using pagination."""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
@@ -602,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="15">
+<div id="cell-11" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch available items from the collection</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>total_count <span class="op">=</span> count_collection_items(collection_name)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> requests.get(<span class="ss">f"</span><span class="sc">{</span>STAC_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">/items?limit=600"</span>).json()[<span class="st">"features"</span>]</span>
@@ -611,10 +612,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Retrieved 79 items from collection</code></pre>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="16">
+<div id="cell-12" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the structure of an individual item</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>items[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>{'id': 'LPJ_EOSIM_L2_MCH4E.001-202312',
  'bbox': [-180.0, -90.0, 180.0, 90.0],
  'type': 'Feature',
@@ -741,24 +742,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Set rescale values for visualization:</p>
-<div id="cell-14" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rescale_values <span class="op">=</span> {<span class="st">'max'</span>: <span class="fl">0.0003</span>, <span class="st">'min'</span>: <span class="fl">0.0</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-14" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rescale_values <span class="op">=</span> {<span class="st">'max'</span>: <span class="fl">0.00000000003</span>, <span class="st">'min'</span>: <span class="fl">0.0</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualize-methane-emissions-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="visualize-methane-emissions-over-time">Visualize Methane Emissions Over Time</h2>
 <p>Generate map tiles using the Raster API to compare emissions across different dates.</p>
-<div id="cell-16" class="cell" data-execution_count="20">
+<div id="cell-16" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index items by date for easy lookup</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>items_by_date <span class="op">=</span> {item[<span class="st">"properties"</span>][<span class="st">"start_datetime"</span>][:<span class="dv">10</span>]: item <span class="cf">for</span> item <span class="kw">in</span> items}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5eb0da27" class="cell" data-execution_count="24">
+<div id="5eb0da27" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>items_by_date[<span class="st">'2023-07-01'</span>][<span class="st">'id'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>'LPJ_EOSIM_L2_MCH4E.001-202307'</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="26">
+<div id="cell-17" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> <span class="st">"magma"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch tiles for summer observation (July)</span></span>
@@ -771,18 +772,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>).json()</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>summer_tile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>{'tilejson': '2.2.0',
  'version': '1.0.0',
  'scheme': 'xyz',
- 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202307/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C0.0003'],
+ 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202307/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C3e-11'],
  'minzoom': 0,
  'maxzoom': 24,
  'bounds': [-180.0, -90.0, 180.0, 90.0],
  'center': [0.0, 0.0, 0]}</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="29">
+<div id="cell-18" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch tiles for winter observation (January)</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>winter_date <span class="op">=</span> <span class="st">'2023-01-01'</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>winter_tile <span class="op">=</span> requests.get(</span>
@@ -793,11 +794,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>).json()</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>winter_tile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>{'tilejson': '2.2.0',
  'version': '1.0.0',
  'scheme': 'xyz',
- 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202301/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C0.0003'],
+ 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202301/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C3e-11'],
  'minzoom': 0,
  'maxzoom': 24,
  'bounds': [-180.0, -90.0, 180.0, 90.0],
@@ -807,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="side-by-side-comparison-summer-vs-winter-emissions" class="level2">
 <h2 class="anchored" data-anchor-id="side-by-side-comparison-summer-vs-winter-emissions">Side-by-Side Comparison: Summer vs Winter Emissions</h2>
-<div id="cell-20" class="cell" data-execution_count="31">
+<div id="cell-20" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare summer and winter emissions over Southeast Asia</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>map_ <span class="op">=</span> folium.plugins.DualMap(location<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">100</span>), zoom_start<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -826,7 +827,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>winter_layer.add_to(map_.m2)</span>
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>map_</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
 <head>
@@ -846,7 +847,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_962956266eefca2fd40d6709fc98eb55 {
+                #map_ee51919bced51c4fc249f3722a803fd8 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -883,7 +884,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_633f88f7db058103992c95a0ed962206 {
+                #map_34a407c325f2909e52e53f5172df2fa8 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -921,17 +922,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_962956266eefca2fd40d6709fc98eb55&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_ee51919bced51c4fc249f3722a803fd8&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_633f88f7db058103992c95a0ed962206&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_34a407c325f2909e52e53f5172df2fa8&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_962956266eefca2fd40d6709fc98eb55 = L.map(
-                &quot;map_962956266eefca2fd40d6709fc98eb55&quot;,
+            var map_ee51919bced51c4fc249f3722a803fd8 = L.map(
+                &quot;map_ee51919bced51c4fc249f3722a803fd8&quot;,
                 {
                     center: [15.0, 100.0],
                     crs: L.CRS.EPSG3857,
@@ -948,7 +949,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         
     
-            var tile_layer_7dd9b8e1806cea9dbc13f541447b69b0 = L.tileLayer(
+            var tile_layer_0b9b9701815d91649cdcca1fcd1777f0 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -965,11 +966,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             );
         
     
-            tile_layer_7dd9b8e1806cea9dbc13f541447b69b0.addTo(map_962956266eefca2fd40d6709fc98eb55);
+            tile_layer_0b9b9701815d91649cdcca1fcd1777f0.addTo(map_ee51919bced51c4fc249f3722a803fd8);
         
     
-            var tile_layer_6b848d2fea96ffb74aacd515625db73d = L.tileLayer(
-                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202307/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C0.0003&quot;,
+            var tile_layer_974adb08cdbd1ed2d77e70065bd9d3b8 = L.tileLayer(
+                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202307/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C3e-11&quot;,
                 {
   &quot;minZoom&quot;: 0,
   &quot;maxZoom&quot;: 18,
@@ -985,11 +986,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             );
         
     
-            tile_layer_6b848d2fea96ffb74aacd515625db73d.addTo(map_962956266eefca2fd40d6709fc98eb55);
+            tile_layer_974adb08cdbd1ed2d77e70065bd9d3b8.addTo(map_ee51919bced51c4fc249f3722a803fd8);
         
     
-            var map_633f88f7db058103992c95a0ed962206 = L.map(
-                &quot;map_633f88f7db058103992c95a0ed962206&quot;,
+            var map_34a407c325f2909e52e53f5172df2fa8 = L.map(
+                &quot;map_34a407c325f2909e52e53f5172df2fa8&quot;,
                 {
                     center: [15.0, 100.0],
                     crs: L.CRS.EPSG3857,
@@ -1006,7 +1007,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         
     
-            var tile_layer_6cd7f1a82b2ab18861f4ccd085b9a6b2 = L.tileLayer(
+            var tile_layer_0ea2eb45c2fab4e9a7bd66bdd2e5836c = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -1023,11 +1024,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             );
         
     
-            tile_layer_6cd7f1a82b2ab18861f4ccd085b9a6b2.addTo(map_633f88f7db058103992c95a0ed962206);
+            tile_layer_0ea2eb45c2fab4e9a7bd66bdd2e5836c.addTo(map_34a407c325f2909e52e53f5172df2fa8);
         
     
-            var tile_layer_d7f0d80581be32d47e1b65e1241baaf6 = L.tileLayer(
-                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202301/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C0.0003&quot;,
+            var tile_layer_b4a722c11efa322015253de6819cf416 = L.tileLayer(
+                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202301/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C3e-11&quot;,
                 {
   &quot;minZoom&quot;: 0,
   &quot;maxZoom&quot;: 18,
@@ -1043,11 +1044,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             );
         
     
-            tile_layer_d7f0d80581be32d47e1b65e1241baaf6.addTo(map_633f88f7db058103992c95a0ed962206);
+            tile_layer_b4a722c11efa322015253de6819cf416.addTo(map_34a407c325f2909e52e53f5172df2fa8);
         
     
-            map_962956266eefca2fd40d6709fc98eb55.sync(map_633f88f7db058103992c95a0ed962206);
-            map_633f88f7db058103992c95a0ed962206.sync(map_962956266eefca2fd40d6709fc98eb55);
+            map_ee51919bced51c4fc249f3722a803fd8.sync(map_34a407c325f2909e52e53f5172df2fa8);
+            map_34a407c325f2909e52e53f5172df2fa8.sync(map_ee51919bced51c4fc249f3722a803fd8);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -1057,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="zonal-statistics-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="zonal-statistics-analysis">Zonal Statistics Analysis</h2>
 <p>Define a region of interest to compute statistics over time. Here we analyze emissions across the Amazon basin.</p>
-<div id="cell-22" class="cell" data-execution_count="32">
+<div id="cell-22" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Amazon basin region</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>amazon_aoi <span class="op">=</span> {</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
@@ -1076,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    },</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="33">
+<div id="cell-23" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the AOI on a map</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>aoi_map <span class="op">=</span> Map(</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">"OpenStreetMap"</span>,</span>
@@ -1086,7 +1087,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>folium.GeoJson(amazon_aoi, name<span class="op">=</span><span class="st">"Amazon Basin"</span>).add_to(aoi_map)</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>aoi_map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
 <head>
@@ -1106,7 +1107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_3c44bc7fccb1821140ff9d8df35c2102 {
+                #map_284a39970e2712413654bcbb2a8e6e14 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -1143,14 +1144,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_3c44bc7fccb1821140ff9d8df35c2102&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_284a39970e2712413654bcbb2a8e6e14&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_3c44bc7fccb1821140ff9d8df35c2102 = L.map(
-                &quot;map_3c44bc7fccb1821140ff9d8df35c2102&quot;,
+            var map_284a39970e2712413654bcbb2a8e6e14 = L.map(
+                &quot;map_284a39970e2712413654bcbb2a8e6e14&quot;,
                 {
                     center: [-2.0, -60.0],
                     crs: L.CRS.EPSG3857,
@@ -1167,7 +1168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
         
     
-            var tile_layer_1d021c261e1b9f4ec52c967fd86fe9ac = L.tileLayer(
+            var tile_layer_087a789a35fb310ceb58a8db07fee06d = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -1184,38 +1185,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             );
         
     
-            tile_layer_1d021c261e1b9f4ec52c967fd86fe9ac.addTo(map_3c44bc7fccb1821140ff9d8df35c2102);
+            tile_layer_087a789a35fb310ceb58a8db07fee06d.addTo(map_284a39970e2712413654bcbb2a8e6e14);
         
     
 
-        function geo_json_55bbbb3a3e0398fdd72638049e62de74_onEachFeature(feature, layer) {
+        function geo_json_56287a353a0b5484d6ad71823df234e1_onEachFeature(feature, layer) {
 
             layer.on({
             });
         };
-        var geo_json_55bbbb3a3e0398fdd72638049e62de74 = L.geoJson(null, {
-                onEachFeature: geo_json_55bbbb3a3e0398fdd72638049e62de74_onEachFeature,
+        var geo_json_56287a353a0b5484d6ad71823df234e1 = L.geoJson(null, {
+                onEachFeature: geo_json_56287a353a0b5484d6ad71823df234e1_onEachFeature,
             
             ...{
 }
         });
 
-        function geo_json_55bbbb3a3e0398fdd72638049e62de74_add (data) {
-            geo_json_55bbbb3a3e0398fdd72638049e62de74
+        function geo_json_56287a353a0b5484d6ad71823df234e1_add (data) {
+            geo_json_56287a353a0b5484d6ad71823df234e1
                 .addData(data);
         }
-            geo_json_55bbbb3a3e0398fdd72638049e62de74_add({&quot;geometry&quot;: {&quot;coordinates&quot;: [[[-70, -10], [-70, 5], [-50, 5], [-50, -10], [-70, -10]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;properties&quot;: {}, &quot;type&quot;: &quot;Feature&quot;});
-        geo_json_55bbbb3a3e0398fdd72638049e62de74.setStyle(function(feature) {return feature.properties.style;});
+            geo_json_56287a353a0b5484d6ad71823df234e1_add({&quot;geometry&quot;: {&quot;coordinates&quot;: [[[-70, -10], [-70, 5], [-50, 5], [-50, -10], [-70, -10]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;properties&quot;: {}, &quot;type&quot;: &quot;Feature&quot;});
+        geo_json_56287a353a0b5484d6ad71823df234e1.setStyle(function(feature) {return feature.properties.style;});
 
         
     
-            geo_json_55bbbb3a3e0398fdd72638049e62de74.addTo(map_3c44bc7fccb1821140ff9d8df35c2102);
+            geo_json_56287a353a0b5484d6ad71823df234e1.addTo(map_284a39970e2712413654bcbb2a8e6e14);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="34">
+<div id="cell-24" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Refresh items list</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> requests.get(</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>STAC_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>collection_name<span class="sc">}</span><span class="ss">/items?limit=600"</span></span>
@@ -1225,7 +1226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Processing 79 items</code></pre>
 </div>
 </div>
-<div id="cell-25" class="cell" data-execution_count="37">
+<div id="cell-25" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_statistics(item, geojson):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate zonal statistics for a single item over the given AOI."""</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> requests.post(</span>
@@ -1239,19 +1240,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"datetime"</span>: item[<span class="st">"properties"</span>][<span class="st">"start_datetime"</span>],</span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="38">
+<div id="cell-26" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute statistics for all available items</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> [compute_statistics(item, amazon_aoi) <span class="cf">for</span> item <span class="kw">in</span> items]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 1.16 s, sys: 164 ms, total: 1.32 s
-Wall time: 1min 5s</code></pre>
+<pre><code>CPU times: user 1.2 s, sys: 178 ms, total: 1.38 s
+Wall time: 1min 6s</code></pre>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="39">
+<div id="cell-27" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview statistics from first item</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>stats[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>{'statistics': {'b1': {'min': 0.0,
    'max': 1.9596972933300094e-09,
    'mean': 1.3262628495436246e-10,
@@ -1282,7 +1283,7 @@ Wall time: 1min 5s</code></pre>
  'datetime': '2023-12-01T00:00:00Z'}</code></pre>
 </div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="40">
+<div id="cell-28" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_stats_dataframe(stats_json):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Convert statistics JSON to a pandas DataFrame."""</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.json_normalize(stats_json)</span>
@@ -1292,7 +1293,7 @@ Wall time: 1min 5s</code></pre>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> format_stats_dataframe(stats)</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -1436,7 +1437,7 @@ Wall time: 1min 5s</code></pre>
 <section id="time-series-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="time-series-visualization">Time Series Visualization</h2>
 <p>Plot the temporal evolution of methane emissions over the Amazon basin.</p>
-<div id="cell-30" class="cell" data-execution_count="42">
+<div id="cell-30" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
@@ -1474,14 +1475,14 @@ Wall time: 1min 5s</code></pre>
 <section id="regional-snapshot" class="level2">
 <h2 class="anchored" data-anchor-id="regional-snapshot">Regional Snapshot</h2>
 <p>Visualize a specific observation over the Amazon region.</p>
-<div id="cell-32" class="cell" data-execution_count="44">
+<div id="cell-32" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a specific observation</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Selected date: </span><span class="sc">{</span>items[<span class="dv">10</span>][<span class="st">'properties'</span>][<span class="st">'start_datetime'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Selected date: 2023-02-01T00:00:00Z</code></pre>
 </div>
 </div>
-<div id="cell-33" class="cell" data-execution_count="47">
+<div id="cell-33" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>selected_tile <span class="op">=</span> requests.get(</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>RASTER_API_URL<span class="sc">}</span><span class="ss">/collections/</span><span class="sc">{</span>items[<span class="dv">10</span>][<span class="st">'collection'</span>]<span class="sc">}</span><span class="ss">/items/</span><span class="sc">{</span>items[<span class="dv">10</span>][<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">/WebMercatorQuad/tilejson.json?&amp;assets=</span><span class="sc">{</span>asset_name<span class="sc">}</span><span class="ss">"</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"&amp;color_formula=gamma+r+1.05&amp;colormap_name=</span><span class="sc">{</span>color_map<span class="sc">}</span><span class="ss">"</span></span>
@@ -1489,18 +1490,18 @@ Wall time: 1min 5s</code></pre>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>).json()</span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>selected_tile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>{'tilejson': '2.2.0',
  'version': '1.0.0',
  'scheme': 'xyz',
- 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202302/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C0.0003'],
+ 'tiles': ['https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202302/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions&amp;color_formula=gamma+r+1.05&amp;colormap_name=magma&amp;rescale=0.0%2C3e-11'],
  'minzoom': 0,
  'maxzoom': 24,
  'bounds': [-180.0, -90.0, 180.0, 90.0],
  'center': [0.0, 0.0, 0]}</code></pre>
 </div>
 </div>
-<div id="cell-34" class="cell" data-execution_count="48">
+<div id="cell-34" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create map centered on Amazon region</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>regional_map <span class="op">=</span> Map(</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    tiles<span class="op">=</span><span class="st">"OpenStreetMap"</span>,</span>
@@ -1516,7 +1517,7 @@ Wall time: 1min 5s</code></pre>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>tile_layer.add_to(regional_map)</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>regional_map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
 <head>
@@ -1536,7 +1537,7 @@ Wall time: 1min 5s</code></pre>
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_ea7ae85f6b9d10be8a558674387880d2 {
+                #map_204d95df0cc3438db6a618b412993b97 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -1573,14 +1574,14 @@ Wall time: 1min 5s</code></pre>
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_ea7ae85f6b9d10be8a558674387880d2&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_204d95df0cc3438db6a618b412993b97&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_ea7ae85f6b9d10be8a558674387880d2 = L.map(
-                &quot;map_ea7ae85f6b9d10be8a558674387880d2&quot;,
+            var map_204d95df0cc3438db6a618b412993b97 = L.map(
+                &quot;map_204d95df0cc3438db6a618b412993b97&quot;,
                 {
                     center: [-5.0, -60.0],
                     crs: L.CRS.EPSG3857,
@@ -1597,7 +1598,7 @@ Wall time: 1min 5s</code></pre>
 
         
     
-            var tile_layer_7e29315f5a51eaa4e2618eb2621b987d = L.tileLayer(
+            var tile_layer_e349d244878c1599eaca95795250878d = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -1614,11 +1615,11 @@ Wall time: 1min 5s</code></pre>
             );
         
     
-            tile_layer_7e29315f5a51eaa4e2618eb2621b987d.addTo(map_ea7ae85f6b9d10be8a558674387880d2);
+            tile_layer_e349d244878c1599eaca95795250878d.addTo(map_204d95df0cc3438db6a618b412993b97);
         
     
-            var tile_layer_b6d710d1d7e23c4b047f3a0b4c5519da = L.tileLayer(
-                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202302/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C0.0003&quot;,
+            var tile_layer_03a6827363f21c2bce7ae1f480fdd55b = L.tileLayer(
+                &quot;https://api.dev.veda.grss.cloud/raster/collections/LPJ_EOSIM_L2_MCH4E.001/items/LPJ_EOSIM_L2_MCH4E.001-202302/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?assets=ensemble-mean-ch4-wetlands-emissions\u0026color_formula=gamma+r+1.05\u0026colormap_name=magma\u0026rescale=0.0%2C3e-11&quot;,
                 {
   &quot;minZoom&quot;: 0,
   &quot;maxZoom&quot;: 18,
@@ -1634,7 +1635,7 @@ Wall time: 1min 5s</code></pre>
             );
         
     
-            tile_layer_b6d710d1d7e23c4b047f3a0b4c5519da.addTo(map_ea7ae85f6b9d10be8a558674387880d2);
+            tile_layer_03a6827363f21c2bce7ae1f480fdd55b.addTo(map_204d95df0cc3438db6a618b412993b97);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -1644,6 +1645,11 @@ Wall time: 1min 5s</code></pre>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>This notebook demonstrated how to: 1. Connect to the GRSS VEDA STAC API and query collection metadata 2. Retrieve and count available data granules 3. Generate and compare map visualizations across different time periods 4. Define areas of interest and compute zonal statistics 5. Create time series plots to analyze temporal patterns in methane emissions</p>
+</section>
+<section id="attribution" class="level2">
+<h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
+<p>This notebook is adapted from materials developed by the <a href="https://earth.gov/ghgcenter">U.S. Greenhouse Gas Center</a>. The original notebook and dataset documentation can be found at:</p>
+<p><a href="https://us-ghg-center.github.io/ghgc-docs/user_data_notebooks/lpjeosim-wetlandch4-grid-v1_User_Notebook.html">US GHG Center - LPJ-EOSIM Wetland Methane Emissions Notebook</a></p>
 
 
 </section>
