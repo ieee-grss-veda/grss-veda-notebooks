@@ -4,9 +4,13 @@ project:
 website:
   page-navigation: true
   title: "GRSS VEDA Documentation"
+  description: "Visualization, Exploration and Data Analysis (VEDA) documentation and notebooks from IEEE GRSS."
+  favicon: favicon.ico
   # site-url: "https://docs.openveda.cloud"
   repo-url: https://github.com/ieee-grss-veda/grss-veda-notebooks
   repo-actions: [edit, issue]
+  open-graph: true
+  twitter-card: true
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -127,6 +131,8 @@ format:
     toc-depth: 3
     include-in-header:
       - text: |
+          <link rel="apple-touch-icon" href="apple-icon.png">
+          <link rel="icon" type="image/svg+xml" href="icon0.svg">
           <script defer data-domain="nasa-impact.github.io/veda-docs" src="https://plausible.io/js/script.js"></script>
 filters:
   - quarto
